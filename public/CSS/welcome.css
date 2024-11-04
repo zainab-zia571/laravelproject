@@ -1,0 +1,287 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #000000, #333333, #4b4b4b, #808080); /* Matching background color */
+}
+
+header {
+    background: linear-gradient(135deg, #000000, #333333, #4b4b4b, #808080);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px; /* Adjusted padding for mobile */
+    width: 100%;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+}
+
+.logo img {
+    width: 100px;
+}
+
+.hamburger {
+    display: none; /* Initially hidden */
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    height: 3px;
+    width: 25px;
+    background-color: #fff; /* Color of the hamburger icon */
+    margin: 2px 0; /* Space between bars */
+    transition: 0.3s;
+}
+
+nav {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    display: flex; /* Default to horizontal for larger screens */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    margin-right: 30px; /* Reduced margin for better spacing */
+}
+
+nav a {
+    text-decoration: none;
+    font-weight: 800;
+    padding: 10px 15px;
+    font-size: 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom-color 0.3s ease-in-out;
+    background: linear-gradient(135deg, #c9b2b2, #c9aeae, #eadcdc, #ddd7d7e3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+nav a:hover {
+    color: #0e0904;
+    background-color: #808080;
+    border-radius: 15px;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+}
+.carousel {
+    position: relative;
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.slides {
+    display: flex;
+    animation: slideAnimation 12s infinite;
+}
+
+.slide {
+    min-width: 100%;
+    position: relative;
+}
+
+.slide img {
+    width: 100%;
+    height: auto;
+}
+
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.text-overlay h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.text-overlay p {
+    font-size: 1rem;
+}
+
+/* Keyframes for the auto-slide animation */
+@keyframes slideAnimation {
+    0% { transform: translateX(0%); }
+    20% { transform: translateX(0%); }
+    40% { transform: translateX(-100%); }
+    60% { transform: translateX(-100%); }
+    80% { transform: translateX(-200%); }
+    90% { transform: translateX(-200%); }
+    95% { transform: translateX(-100%); }
+    100% { transform: translateX(0%); }
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.video-poster {
+    position: relative;
+    width: 80%;
+    max-width: 800px; /* Ensure it doesn't get too wide */
+    margin: 20px auto;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.video-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.btn {
+    margin: 10px;
+    padding: 15px 30px; /* Adjust padding for buttons */
+    color: #808080;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #c9b2b2, #c9aeae, #eadcdc, #ddd7d7e3);
+    transition: background-color 0.3s ease; /* Smooth background transition */
+}
+
+.btn:hover {
+    background-color: #808080; /* Change on hover */
+    color: #fff; /* Change text color on hover */
+}
+
+hr {
+    background-color: #625c5c;
+    margin: 50px auto;
+    height: 2px;
+    border: none;
+    width: 80%;
+    border-radius: 5px;
+}
+
+footer {
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+}
+
+.social-media a {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    nav ul {
+        display: none; /* Hide the menu initially on mobile */
+        flex-direction: column; /* Stack items vertically */
+        width: 100%; /* Full width */
+        position: absolute; /* Position it absolutely */
+        top: 60px; /* Below the header */
+        left: 0;
+        background-color: #333; /* Background color */
+        z-index: 1000; /* Ensure it appears above other elements */
+    }
+
+    nav ul.active {
+        display: flex; /* Show the menu when active */
+    }
+
+    .hamburger {
+        display: flex; /* Show the hamburger icon on mobile */
+    }
+
+    header {
+        flex-direction: column; /* Stack logo and menu on top of each other */
+        align-items: flex-start; /* Align items to the start */
+    }
+
+    nav li {
+        margin-bottom: 10px; /* Space between items */
+        margin-right: 0; /* Reset margin */
+    }
+
+    nav a {
+        padding: 10px; /* Padding for links */
+        color: white; /* Text color */
+    }
+
+    .carousel .slide img {
+        height: 50vh; /* Adjust height for smaller screens */
+    }
+
+    .text-overlay h1 {
+        font-size: 1.25rem; /* Adjust font size for smaller screens */
+    }
+
+    .text-overlay p {
+        font-size: 0.875rem; /* Adjust font size for smaller screens */
+    }
+
+    .video-poster {
+        width: 90%; /* Make it more responsive */
+    }
+
+    .btn {
+        padding: 10px 20px; /* Adjust button padding */
+        font-size: 0.875rem; /* Adjust font size */
+    }
+}
+
+@media (max-width: 576px) {
+    header {
+        padding: 10px; /* More padding for smaller screens */
+    }
+
+    .logo img {
+        width: 80px; /* Adjust logo size */
+        margin-bottom: 10px;
+    }
+
+    nav a {
+        padding: 8px; /* Padding for links */
+        font-size: 14px; /* Adjust font size */
+    }
+
+    .text-overlay h1 {
+        font-size: 1rem; /* Smaller font size */
+    }
+
+    .text-overlay p {
+        font-size: 0.75rem; /* Smaller font size */
+    }
+
+    .carousel .slide img {
+        height: 40vh; /* Adjust height for very small screens */
+    }
+
+    .btn {
+        padding: 8px 10px; /* Smaller button padding */
+        font-size: 0.75rem; /* Smaller font size */
+    }
+}
