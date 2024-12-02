@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Movie;
 
+use Illuminate\Http\Request;
 class WebController extends Controller
 {
     public function welcome()
@@ -16,7 +18,8 @@ class WebController extends Controller
 
     public function booking()
     {
-        return view('web.booking'); // Points to web/welcome.blade.php
+        $movies = Movie::all(); // Fetch all movies from the database
+        return view('web.booking', compact('movies')); // Pass movies to the view
     }
 
     public function contact()
@@ -43,4 +46,13 @@ class WebController extends Controller
     {
         return view('web.register'); // Points to web/welcome.blade.php
     }
+ 
+    public function search(Request $request)
+{
+    $query = $request->input('query');
+    $movies = Movie::where('title', 'LIKE', "%{$query}%")->get();
+    return view('movies.search_results', compact('movies'));
 }
+    
+}
+

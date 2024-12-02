@@ -3,14 +3,27 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebController;
+use App\Http\Controllers\Admin\MovieController;
+use App\Illuminate\Http\Request;
 
-Route::get('/', [WebController::class, 'welcome'])->name('welcome');
-Route::get('/', [WebController::class, 'about'])->name('about');
-Route::get('/', [WebController::class, 'booking'])->name('booking');
-Route::get('/', [WebController::class, 'seats'])->name('seats');
-Route::get('/', [WebController::class, 'confirmation'])->name('confirmation');
-Route::get('/', [WebController::class, 'login'])->name('login');
-Route::get('/', [WebController::class, 'register'])->name('register');
+Route::get('/welcome', [WebController::class, 'welcome'])->name('welcome');
+Route::get('/about', [WebController::class, 'about'])->name('about');
+Route::get('/booking', [WebController::class, 'booking'])->name('booking');
+Route::get('/seats', [WebController::class, 'seats'])->name('seats');
+Route::get('/confrimation', [WebController::class, 'confirmation'])->name('confirmation');
+Route::get('/login', [WebController::class, 'login'])->name('login');
+Route::get('/register', [WebController::class, 'register'])->name('register');
+Route::get('/booking', [App\Http\Controllers\WebController::class, 'booking'])->name('booking');
+
+
+
+Route::prefix('admin')->name('admin.')->group(function() {
+    Route::resource('movies', MovieController::class);
+});
+
+
+
+Route::get('/search', [WebController::class, 'search'])->name('search');
 Route::get('/', function () {
     return view('web.welcome');
 });
@@ -47,9 +60,6 @@ Route::get('/about', function () {
 
 
 
-Route::get('/booking', function () {
-    return view('web.booking');
-})->name('booking');
 
 
 Route::get('/contact', function () {
@@ -68,27 +78,3 @@ Route::get('/confirmation', function () {
 
 require __DIR__.'/auth.php';
 
-// Route::get('/welcome', function () {
-//     return view('welcome');
-// })->name('welcome');
-
-// Route::get('/booking', function () {
-//     return view('booking');
-// })->name('booking');
-
-// Route::get('/seats', function () {
-//     return view('seats');
-// })->name('seats');
-
-// Route::get('/confirmation', function () {
-//     return view('confirmation');
-// })->name('confirmation');
-
-
-// Route::get('/about', function () {
-//     return view('about');
-// })->name('about');
-
-// Route::get('/contact', function () {
-//     return view('contact');
-// })->name('contact');

@@ -10,7 +10,13 @@
         <span class="bar"></span>
         <span class="bar"></span>
     </button>
-
+  
+    <!-- Search Bar -->
+    <form action="{{ route('search') }}" method="GET" class="search-form">
+            <input type="text" name="query" placeholder="Search movies..." required>
+            <button type="submit">🔍</button>
+        </form>
+    
 
    <nav>
        <ul>

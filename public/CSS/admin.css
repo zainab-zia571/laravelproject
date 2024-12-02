@@ -1,0 +1,96 @@
+/* General page styling */
+body {
+    background-color: #000;
+    color: #fff;
+}
+
+.container {
+    background-color: #111;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+h2 {
+    color: #fff;
+    border-bottom: 2px solid #fff;
+    padding-bottom: 10px;
+}
+
+/* Movies Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+thead {
+    background-color: #333;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    color: #fff;
+}
+
+td {
+    color: #fff;
+}
+
+tr:nth-child(even) {
+    background-color: #222;
+}
+
+tr:nth-child(odd) {
+    background-color: #333;
+}
+
+tr:hover {
+    background-color: #444;
+}
+
+/* Image styling for the poster */
+img {
+    max-width: 100px;
+    border-radius: 5px;
+}
+
+/* Button styling */
+.btn {
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: #555;
+    border-color: #444;
+}
+
+.btn-primary:hover {
+    background-color: #777;
+    border-color: #666;
+}
+
+.btn-warning {
+    background-color: #ffcc00;
+    border-color: #e6b800;
+    color: #000;
+}
+
+.btn-warning:hover {
+    background-color: #cc9900;
+    border-color: #b38f00;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #c82333;
+}
+
+.btn-danger:hover {
+    background-color: #bd2130;
+    border-color: #9a1c26;
+}
