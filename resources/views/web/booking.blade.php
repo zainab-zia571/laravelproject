@@ -12,13 +12,11 @@
             <p class="text-center">No movies available at the moment. Please check back later.</p>
         @else
             @foreach ($movies as $movie)
-            
                 <div class="col-md-6 col-12 mb-4">
                     <div class="card movie-card">
                         <img src="{{ asset('storage/' . $movie->poster) }}" class="card-img-top" alt="{{ $movie->title }}" width="100" height="300">
                         <div class="card-body">
                             <h5 class="card-title">{{ $movie->title }}</h5>
-                            <p>Showtime: {{ $movie->showtime }}</p>
                             <p>Screening until: {{ $movie->screening_until }}</p>
                             
                             <!-- Movie Booking Form -->
@@ -27,19 +25,26 @@
                                 <div class="form-group">
                                     <!-- Date Picker -->
                                     <label for="booking_date">Select Date</label>
-                                    <input type="date" name="booking_date" id="booking_date" class="form-control" required>
+                                    <input type="date" name="booking_date" id="booking_date" class="form-control" 
+                                        min="{{ date('Y-m-d') }}" 
+                                        max="{{ $movie->screening_until }}" required>
                                 </div>
                                 <div class="form-group">
                                     <!-- Time Picker -->
                                     <label for="showtime">Select Showtime</label>
                                     <select name="showtime" id="showtime" class="form-control" required>
-                                        <option value="{{ $movie->showtime }}">{{ $movie->showtime }}</option>
+                                        @foreach (json_decode($movie->showtimes) as $showtime)
+                                            <option value="{{ $showtime }}">{{ $showtime }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <!-- Number of Tickets -->
                                     <label for="tickets">Number of Tickets</label>
-                                    <input type="number" name="tickets" id="tickets" class="form-control" min="1" value="1" required>
+                                    <input type="number" name="tickets" id="tickets" class="form-control" 
+                                        min="1" 
+                                        max="{{ $movie->tickets }}" required>
+                                      
                                 </div>
 
                                 <!-- Hidden movie ID to pass -->

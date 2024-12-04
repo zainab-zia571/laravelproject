@@ -16,8 +16,10 @@
                 <th>#</th>
                 <th>Title</th>
                 <th>Poster</th>
+                <th>Tickets available</th>
                 <th>Showtime</th>
                 <th>Screening Until</th>
+                <th>Category</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -27,8 +29,10 @@
                 <td>{{ $movie->id }}</td>
                 <td>{{ $movie->title }}</td>
                 <td><img src="{{ asset('storage/' . $movie->poster) }}" width="100" height="150"></td>
-                <td>{{ $movie->showtime }}</td>
+                <td>{{ $movie->tickets }}</td>
+                <td>{{ implode(', ', json_decode($movie->showtimes, true)) }}</td>
                 <td>{{ $movie->screening_until }}</td>
+                <td>{{ $movie->category ? $movie->category->name : 'No Category' }}</td>
                 <td>
                     <!-- Edit Button -->
                     <a href="{{ route('admin.movies.edit', $movie->id) }}" class="btn btn-warning btn-sm">Edit</a>

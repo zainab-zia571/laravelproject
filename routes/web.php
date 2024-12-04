@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\Admin\MovieController;
 use App\Illuminate\Http\Request;
+use App\Http\Controllers\BookingController;
 
 Route::get('/welcome', [WebController::class, 'welcome'])->name('welcome');
 Route::get('/about', [WebController::class, 'about'])->name('about');
@@ -21,6 +22,10 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::resource('movies', MovieController::class);
 });
 
+Route::post('/store-booking', [BookingController::class, 'storeBooking'])->name('booking.store');
+Route::get('/confirmation', function () {
+    return view('web.confirmation');
+})->name('confirmation');
 
 
 Route::get('/search', [WebController::class, 'search'])->name('search');

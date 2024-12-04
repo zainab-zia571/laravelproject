@@ -12,7 +12,12 @@ class Movie extends Model
     protected $fillable = [
         'title',
         'poster',
-        'showtime',
+        'showtimes',
+        'tickets',
         'screening_until',
+        'category_id',
     ];
+    public function category() {
+        return $this->belongsTo(Category::class);
+    }
 }
