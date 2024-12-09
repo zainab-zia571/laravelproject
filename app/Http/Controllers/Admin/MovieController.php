@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use Illuminate\Support\Facades\Storage;
 
 use App\Http\Controllers\Controller;
 use App\Models\Movie;
@@ -114,5 +115,18 @@ class MovieController extends Controller
 
     return redirect()->route('admin.movies.index')->with('success', 'Movie updated successfully!');
 }
+public function destroy(string $id)
+    {
+        $movie = Movie::findOrFail($id); // Find the movie by ID
 
+        // Check if the movie has an associated poster and delete it from storage
+        if ($movie->poster) {
+            Storage::disk('public')->delete($movie->poster);
+        }
+
+        // Delete the movie from the database
+        $movie->delete();
+
+        return redirect()->route('admin.movies.index')->with('success', 'Movie deleted successfully!');
+    }
 }

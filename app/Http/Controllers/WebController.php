@@ -70,7 +70,12 @@ class WebController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
-        $movies = Movie::where('title', 'LIKE', "%{$query}%")->get();
-        return view('movies.search_results', compact('movies'));
+        $movies = Movie::where('title', 'LIKE', "%{$query}%")
+                       ->orWhereHas('category', function ($q) use ($query) {
+                           $q->where('name', 'LIKE', "%{$query}%");
+                       })
+                       ->get();
+        return view('web.search_results', compact('movies', 'query'));
     }
+    
 }
